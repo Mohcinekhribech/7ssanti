@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.orcamo</groupId>
-	<artifactId>7ssanti</artifactId>
+	<artifactId>hssanti</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>7ssanti</name>
+	<name>hssanti</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>21</java.version>

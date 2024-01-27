@@ -22,6 +22,6 @@ public class Article {
     private Barber barber;
     @OneToMany(mappedBy = "article")
     private List<Comment> comments;
-    @ManyToMany(mappedBy = "articles")
+    @ManyToMany(mappedBy = "articlesLiked")
     private List<Client> likes = new ArrayList<>();
 }

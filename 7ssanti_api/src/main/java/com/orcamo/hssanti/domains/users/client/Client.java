@@ -23,5 +23,5 @@ public class Client extends User {
             name = "like",
             joinColumns = @JoinColumn(name = "client_id"),
             inverseJoinColumns = @JoinColumn(name = "article_id"))
-    private List<Article> validations = new ArrayList<>();
+    private List<Article> articlesLiked = new ArrayList<>();
 }

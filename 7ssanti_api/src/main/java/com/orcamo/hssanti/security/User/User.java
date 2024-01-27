@@ -22,7 +22,7 @@ import java.util.List;
 @Entity
 @Table(name = "app_user")
 //public class User {
-public abstract class User  implements UserDetails {
+public class User  implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;

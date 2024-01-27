@@ -1,6 +1,6 @@
 package com.orcamo.hssanti.security;
 
-import com.youcode.sunquizz.Security.jwt.JwtAuthenticationFilter;
+import com.orcamo.hssanti.security.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity
 public class SecurityConfiguration {
 
-    private static final String[] WHITE_LIST_URL = {"/auth/**" , "/swagger-ui/**"
+    private static final String[] WHITE_LIST_URL = {"/**"
 
             };
     private final JwtAuthenticationFilter jwtAuthFilter;

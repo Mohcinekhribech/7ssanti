@@ -3,35 +3,51 @@ package com.orcamo.hssanti.domains.users.client;
 import com.orcamo.hssanti.domains.users.client.dtos.ClientReq;
 import com.orcamo.hssanti.domains.users.client.dtos.ClientResp;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
 public class ClientService implements ClientServiceInterface{
     private final ClientRepository clientRepository;
+    private final ModelMapper modelMapper;
     @Override
     public ClientResp create(ClientReq clientReq) {
-        return null;
+        Client client =  clientRepository.save(modelMapper.map(clientReq,Client.class));
+        return modelMapper.map(client, ClientResp.class);
     }
 
     @Override
-    public ClientResp update(ClientReq clientReq, Integer integer) {
-        return null;
+    public ClientResp update(ClientReq clientReq, Integer id) {
+        Optional<Client> clientOptional = clientRepository.findById(id);
+        return clientOptional.map(client -> {
+            clientReq.setId(client.getId());
+            client = clientRepository.save(modelMapper.map(clientReq,Client.class));
+            return modelMapper.map(client,ClientResp.class);
+        }).orElse(null);
     }
 
     @Override
-    public Integer delete(Integer integer) {
-        return null;
+    public Integer delete(Integer id) {
+        Optional<Client> clientOptional = clientRepository.findById(id);
+        return clientOptional.map(client -> {
+                    clientRepository.delete(client);
+                    return 1;
+                })
+                .orElse(0);
     }
 
     @Override
     public List<ClientResp> getAll() {
-        return null;
+        return clientRepository.findAll().stream().map(client -> modelMapper.map(client,ClientResp.class)).collect(Collectors.toList());
     }
 
     @Override
-    public ClientResp getOne(Integer integer) {
-        return null;
+    public ClientResp getOne(Integer id) {
+        Optional<Client> clientOptional = clientRepository.findById(id);
+        return modelMapper.map(clientOptional.orElse(null),ClientResp.class);
     }
 }

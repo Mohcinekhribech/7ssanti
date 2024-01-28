@@ -26,7 +26,7 @@ public class User  implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
-    protected String username;
+    protected String fullName;
     protected LocalDate dateOfBirth;
     @Column(unique = true)
     protected String email;

@@ -11,13 +11,9 @@ import java.time.LocalDate;
 @Data
 public class UserDTO {
     private Integer id;
-    @NotBlank(message = "First name cannot be blank")
-    @Size(max = 255, message = "First name must not exceed 255 characters")
-    private String firstName;
-
-    @NotBlank(message = "Last name cannot be blank")
-    @Size(max = 255, message = "Last name must not exceed 255 characters")
-    private String lastName;
+    @NotBlank(message = "fullName name cannot be blank")
+    @Size(max = 255, message = "fullName name must not exceed 255 characters")
+    private String fullName;
 
     @NotNull(message = "Date of birth cannot be null")
     @Past(message = "Date of birth must be in the past")

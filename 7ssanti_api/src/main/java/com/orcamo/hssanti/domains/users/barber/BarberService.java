@@ -3,36 +3,52 @@ package com.orcamo.hssanti.domains.users.barber;
 import com.orcamo.hssanti.domains.users.barber.dtos.BarberReq;
 import com.orcamo.hssanti.domains.users.barber.dtos.BarberResp;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
 public class BarberService implements BarberServiceInterface{
     private final BarberRepository barberRepository;
+    private final ModelMapper modelMapper;
     @Override
     public BarberResp create(BarberReq barberReq) {
-        return null;
+        Barber barber =  barberRepository.save(modelMapper.map(barberReq,Barber.class));
+        return modelMapper.map(barber,BarberResp.class);
     }
 
     @Override
-    public BarberResp update(BarberReq barberReq, Integer integer) {
-        return null;
+    public BarberResp update(BarberReq barberReq, Integer id) {
+        Optional<Barber> barberOptional = barberRepository.findById(id);
+        return barberOptional.map(barber -> {
+            barberReq.setId(barber.getId());
+            barber = barberRepository.save(modelMapper.map(barberReq,Barber.class));
+            return modelMapper.map(barber,BarberResp.class);
+        }).orElse(null);
     }
 
     @Override
-    public Integer delete(Integer integer) {
-        return null;
+    public Integer delete(Integer id) {
+        Optional<Barber> barberOptional = barberRepository.findById(id);
+        return barberOptional.map(barber -> {
+                    barberRepository.delete(barber);
+                    return 1;
+                })
+                .orElse(0);
     }
 
     @Override
     public List<BarberResp> getAll() {
-        return null;
+        return barberRepository.findAll().stream().map(barber -> modelMapper.map(barber,BarberResp.class)).collect(Collectors.toList());
     }
 
     @Override
-    public BarberResp getOne(Integer integer) {
-        return null;
+    public BarberResp getOne(Integer id) {
+        Optional<Barber> barberOptional = barberRepository.findById(id);
+        return modelMapper.map(barberOptional.orElse(null),BarberResp.class);
     }
 }

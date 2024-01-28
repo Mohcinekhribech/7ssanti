@@ -11,9 +11,10 @@ import java.time.LocalDate;
 
 @Data
 public class UserRequest {
-    @NotBlank(message = "username cannot be blank")
-    @Size(max = 255, message = "username must not exceed 255 characters")
-    private String username;
+    private Integer id;
+    @NotBlank(message = "fullName cannot be blank")
+    @Size(max = 255, message = "fullName must not exceed 255 characters")
+    private String fullName;
 
     @NotNull(message = "Date of birth cannot be null")
     @Past(message = "Date of birth must be in the past")

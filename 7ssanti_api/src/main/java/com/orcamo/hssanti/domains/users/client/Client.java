@@ -18,10 +18,6 @@ public class Client extends User {
     private LocalDate registrationDate;
     @OneToMany(mappedBy = "client")
     private List<Comment> comments;
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "like",
-            joinColumns = @JoinColumn(name = "client_id"),
-            inverseJoinColumns = @JoinColumn(name = "article_id"))
+    @ManyToMany(mappedBy = "likes")
     private List<Article> articlesLiked = new ArrayList<>();
 }

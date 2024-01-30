@@ -22,6 +22,10 @@ public class Article {
     private Barber barber;
     @OneToMany(mappedBy = "article")
     private List<Comment> comments;
-    @ManyToMany(mappedBy = "articlesLiked")
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "client_article_like",
+            joinColumns = @JoinColumn(name = "article_id"),
+            inverseJoinColumns = @JoinColumn(name = "client_id"))
     private List<Client> likes = new ArrayList<>();
 }

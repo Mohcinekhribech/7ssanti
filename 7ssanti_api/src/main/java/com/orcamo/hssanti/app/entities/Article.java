@@ -25,4 +25,6 @@ public class Article {
             joinColumns = @JoinColumn(name = "article_id"),
             inverseJoinColumns = @JoinColumn(name = "client_id"))
     private List<Client> likes = new ArrayList<>();
+    @OneToMany(mappedBy = "article")
+    private List<Media> medias;
 }

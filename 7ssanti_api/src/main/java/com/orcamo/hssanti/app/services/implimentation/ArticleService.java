@@ -24,7 +24,7 @@ public class ArticleService implements ArticleServiceInterface {
 
     @Override
     public ArticleResp create(ArticleReq articleReq) {
-        Optional<Barber> barberOptional = barberRepository.findById(articleReq.getId());
+        Optional<Barber> barberOptional = barberRepository.findById(articleReq.getBarber_id());
         return barberOptional.map(barber -> {
             Article article = modelMapper.map(articleReq, Article.class);
             article.setBarber(barber);

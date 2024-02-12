@@ -1,5 +1,6 @@
 package com.orcamo.hssanti.security.User;
 
+import com.orcamo.hssanti.app.entities.Media;
 import com.orcamo.hssanti.security.token.Token;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

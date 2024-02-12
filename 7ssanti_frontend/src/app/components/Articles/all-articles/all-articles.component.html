@@ -1,0 +1,21 @@
+<app-nav-bar></app-nav-bar>
+<div class="flex space-x-4 p-4 pt-20">
+    <div class="w-[25%]">
+        <app-suggested-barbers></app-suggested-barbers>
+        <app-suggested-hair-salon></app-suggested-hair-salon>
+    </div>
+    <div class="w-[50%] ">
+        <app-article-form></app-article-form>
+        <div *ngFor="let article of articles">
+            <app-article-content [article]="article"></app-article-content>
+        </div>
+    </div>
+    <div class="w-[25%] bg-gray-50 h-fit border-[1px] border-gray-200 rounded-lg">
+        <div class="p-2 ">
+            <p class="font-medium text-md   text-center" >Find your best barber</p>
+            <div class="flex justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-month" width="70" height="70" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg>
+            </div>
+        </div>
+    </div>
+</div>

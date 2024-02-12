@@ -1,0 +1,53 @@
+<app-modal (closeEvent)="closeModal($event)" class="rounded-lg" *ngIf="showform">
+    <div class="bg-gray-50 h-[80vh] rounded-lg">
+        <div class="flex items-center h-full bg-gray-200  w-full rounded-lg">
+            <div class="flex justify-center w-[50%] rounded-lg">
+                <img class=" max-h-[400px] max-w-full"
+                    [src]="article.medias[0]?.mediaLink"
+                    alt="">
+            </div>
+            <div class="bg-gray-50 p-2 w-[50%] h-full rounded-lg">
+                <div class=" h-[62vh] overflow-y-auto">
+                    <div *ngFor="let comment of comments" class="border-b ">
+                        <div class="flex space-x-2 items-center ">
+                            <img class="ml-4 h-10 w-10 rounded-full shadow"
+                                src="https://media.licdn.com/dms/image/D4E03AQHdmxxBtduvCQ/profile-displayphoto-shrink_400_400/0/1677932158562?e=1712188800&v=beta&t=7ZbkW9eIw1JwrpKgQcbWSHu2Brhm6eSj8vKKIcmQpKk"
+                                alt="">
+                            <p class="font-medium text-sm  ">Mohcine khribech</p>
+                        </div>
+                        <p class="ml-12 text-xs  px-4 pb-2">{{comment.content}}
+                        </p>
+                    </div>
+                </div>
+                <div class="p-2 flex space-x-6">
+                    <div class="flex space-x-2 ">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /></svg>
+                        <p class="text-sm">30 Likes</p>
+                    </div>
+                    <div class="flex space-x-2"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-message-circle" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 20l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c3.255 2.777 3.695 7.266 1.029 10.501c-2.666 3.235 -7.615 4.215 -11.574 2.293l-4.7 1" /></svg>
+                        <p class="text-sm">30 Comments</p> 
+                    </div>
+                </div>
+                    <div>
+
+                    <form (submit)="postComment()">
+                        <label for="Comment"
+                            class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Comment</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-500 "  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>
+                            </div>
+                            <input type="text"
+                                class="block w-full p-4 ps-10 text-sm text-gray-900  rounded-lg bg-gray-50 outline-none" name="comment" [(ngModel)]="comment.content"
+                                placeholder="Comment" required>
+                            <button type="submit"
+                                class=" absolute end-2.5 bottom-2.5 hover:bg-lime-400 hover:text-gray-50 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 ">Publish</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</app-modal>

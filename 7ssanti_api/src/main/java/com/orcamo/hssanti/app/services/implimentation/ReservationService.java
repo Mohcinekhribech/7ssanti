@@ -2,7 +2,11 @@ package com.orcamo.hssanti.app.services.implimentation;
 
 import com.orcamo.hssanti.app.dtos.request.ReservationReq;
 import com.orcamo.hssanti.app.dtos.response.ReservationResp;
+import com.orcamo.hssanti.app.dtos.response.ServiceResp;
+import com.orcamo.hssanti.app.entities.Barber;
+import com.orcamo.hssanti.app.entities.Client;
 import com.orcamo.hssanti.app.entities.Reservation;
+import com.orcamo.hssanti.app.repositories.ClientRepository;
 import com.orcamo.hssanti.app.repositories.ReservationRepository;
 import com.orcamo.hssanti.app.services.interfaces.ReservationServiceInterface;
 import lombok.AllArgsConstructor;
@@ -17,21 +21,30 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class ReservationService implements ReservationServiceInterface {
     private final ReservationRepository reservationRepository;
+    private final ClientRepository clientRepository;
     private final ModelMapper modelMapper;
 
     @Override
     public ReservationResp create(ReservationReq reservationReq) {
-        Reservation reservation =  reservationRepository.save(modelMapper.map(reservationReq,Reservation.class));
-        return modelMapper.map(reservation, ReservationResp.class);
+        Optional<Client> client = clientRepository.findById(reservationReq.getClientId());
+        return client.map(c -> {
+            Reservation reservation = modelMapper.map(reservationReq, Reservation.class);
+            reservation.setClient(c);
+            return modelMapper.map(reservationRepository.save(reservation), ReservationResp.class);
+        }).orElse(null);
     }
 
     @Override
     public ReservationResp update(ReservationReq reservationReq, Integer id) {
         Optional<Reservation> reservationOptional = reservationRepository.findById(id);
         return reservationOptional.map(reservation -> {
-            reservationReq.setId(reservation.getId());
-            reservation = reservationRepository.save(modelMapper.map(reservationReq,Reservation.class));
-            return modelMapper.map(reservation,ReservationResp.class);
+            Optional<Client> client = clientRepository.findById(reservationReq.getClientId());
+            return client.map(c -> {
+                Reservation reservation1 = modelMapper.map(reservationReq, Reservation.class);
+                reservation1.setClient(c);
+                reservation1.setId(reservation.getId());
+                return modelMapper.map(reservationRepository.save(reservation1), ReservationResp.class);
+            }).orElse(null);
         }).orElse(null);
     }
 

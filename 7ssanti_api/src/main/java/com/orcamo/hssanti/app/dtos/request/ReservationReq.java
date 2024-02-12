@@ -10,4 +10,5 @@ public class ReservationReq {
     private Integer id;
     private LocalDateTime date;
     private ReservationEtat etat;
+    private Integer clientId;
 }

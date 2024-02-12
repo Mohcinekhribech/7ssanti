@@ -3,6 +3,9 @@ package com.orcamo.hssanti.app.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Entity
 public class Service {
@@ -14,4 +17,6 @@ public class Service {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "barber_id")
     public Barber barber;
+    @ManyToMany(mappedBy = "services")
+    private List<Reservation> reservations = new ArrayList<>();
 }

@@ -20,4 +20,6 @@ public class Client extends User {
     private List<Comment> comments;
     @ManyToMany(mappedBy = "likes")
     private List<Article> articlesLiked = new ArrayList<>();
+    @OneToMany(mappedBy = "client")
+    private List<Reservation> reservations ;
 }

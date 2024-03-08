@@ -1,0 +1,55 @@
+<app-nav-bar></app-nav-bar>
+<div class="pt-14">
+    <button (click)="showForm =true" class="flex space-x-2 bg-[#8EAE69] text-white p-2 font-medium rounded-lg m-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="24" height="24"
+            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+            <path d="M9 12h6" />
+            <path d="M12 9v6" />
+        </svg>
+        <p>New Service</p>
+    </button>
+    <app-modal (closeEvent)="closeModal($event)" *ngIf="showForm">
+            <form (submit)="postData()" class="max-w-sm mx-auto bg-gray-50 p-4 rounded-lg">
+                <div class="mb-5">
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Service Name </label>
+                    <input  name="name" [(ngModel)]="service.name" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                </div>
+                <div class="mb-5">
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price </label>
+                    <input  name="name" [(ngModel)]="service.price" type="number" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                </div>
+                <div class="mb-5">
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">time (min) </label>
+                    <input  name="name" [(ngModel)]="service.timeIstimation" type="number" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                </div>
+                <div class="mb-5">
+                    <label for="name"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">description </label>
+                    <textarea [(ngModel)]="service.description" name="name"   class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                    </textarea>
+                </div>
+                <div class="flex items-center p-4  border-t border-gray-200 rounded-b ">
+                    <app-primary-button type="submit">Add</app-primary-button>
+                </div>
+            </form>
+    </app-modal>
+    <div class="display rounded-lg p-4 ">
+        <div *ngFor="let service of services" class="max-w-xs overflow-hidden bg-white rounded-lg shadow-lg ">
+            <div class="px-4 py-2">
+                <h3 class="text-md font-bold text-gray-800 uppercase">{{service.name}}</h3>
+                <p class="mt-1 text-xs text-gray-600">{{service.description}}</p>
+            </div>
+            <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
+                <h3 class="text-sm font-bold text-white">${{service.price}}</h3>
+                <h3 class="text-sm font-bold text-white">{{service.timeIstimation}}min</h3>
+                <button
+                    class="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">Update</button>
+                <button
+                    class="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">Delete</button>
+            </div>
+        </div>
+
+    </div>
+</div>

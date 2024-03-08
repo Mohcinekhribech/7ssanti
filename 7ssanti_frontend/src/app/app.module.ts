@@ -22,6 +22,15 @@ import { ArticleEffects } from './store/effects/article.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { FormsModule } from '@angular/forms';
 import { ArticleInfoInBarberProfileComponent } from './components/Articles/article-info-in-barber-profile/article-info-in-barber-profile.component';
+import { ReservationComponent } from './components/reservations/reservation/reservation.component';
+import { ChooseDateComponent } from './components/reservations/choose-date/choose-date.component';
+import { ChooseTimeComponent } from './components/reservations/choose-time/choose-time.component';
+import { ChooseServicesComponent } from './components/reservations/choose-services/choose-services.component';
+import { PaimentComponent } from './components/reservations/paiment/paiment.component';
+import { BarberServicesComponent } from './components/barbers/barber-services/barber-services.component';
+import { AllBarbersComponent } from './components/barbers/all-barbers/all-barbers.component';
+import { AllHairSalonComponent } from './components/hair-salon/all-hair-salon/all-hair-salon.component';
+import { AllMyReservationsComponent } from './components/reservations/all-my-reservations/all-my-reservations.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +47,16 @@ import { ArticleInfoInBarberProfileComponent } from './components/Articles/artic
     LoginComponent,
     ModalComponent,
     ArticleInfoComponent,
-    ArticleInfoInBarberProfileComponent
+    ArticleInfoInBarberProfileComponent,
+    ReservationComponent,
+    ChooseDateComponent,
+    ChooseTimeComponent,
+    ChooseServicesComponent,
+    PaimentComponent,
+    BarberServicesComponent,
+    AllBarbersComponent,
+    AllHairSalonComponent,
+    AllMyReservationsComponent
   ],
   imports: [
     BrowserModule,

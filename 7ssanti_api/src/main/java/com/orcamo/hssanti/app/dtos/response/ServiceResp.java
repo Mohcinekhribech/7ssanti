@@ -12,5 +12,7 @@ public class ServiceResp {
     private String name;
     private Integer timeIstimation;
     public BarberReq barber;
+    private Integer price;
+    private String description;
     private List<ReservationReq> reservations;
 }

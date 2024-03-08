@@ -8,4 +8,6 @@ public class ServiceReq {
     private String name;
     private Integer timeIstimation;
     public Integer barber_id;
+    private Integer price;
+    private String description;
 }

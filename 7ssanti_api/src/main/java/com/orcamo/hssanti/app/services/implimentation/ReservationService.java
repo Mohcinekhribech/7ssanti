@@ -2,8 +2,6 @@ package com.orcamo.hssanti.app.services.implimentation;
 
 import com.orcamo.hssanti.app.dtos.request.ReservationReq;
 import com.orcamo.hssanti.app.dtos.response.ReservationResp;
-import com.orcamo.hssanti.app.dtos.response.ServiceResp;
-import com.orcamo.hssanti.app.entities.Barber;
 import com.orcamo.hssanti.app.entities.Client;
 import com.orcamo.hssanti.app.entities.Reservation;
 import com.orcamo.hssanti.app.repositories.ClientRepository;
@@ -67,5 +65,11 @@ public class ReservationService implements ReservationServiceInterface {
     public ReservationResp getOne(Integer id) {
         Optional<Reservation> reservationOptional = reservationRepository.findById(id);
         return modelMapper.map(reservationOptional.orElse(null),ReservationResp.class);
+    }
+
+    @Override
+    public List<ReservationResp> getAllByClient(Integer client_id) {
+        Optional<Client> client = clientRepository.findById(client_id);
+        return this.reservationRepository.getAllByClient(client.orElse(null)).stream().map(reservation -> modelMapper.map(reservation,ReservationResp.class)).collect(Collectors.toList());
     }
 }

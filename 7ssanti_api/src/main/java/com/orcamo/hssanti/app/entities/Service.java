@@ -14,6 +14,8 @@ public class Service {
     private Integer id;
     private String name;
     private Integer timeIstimation;
+    private Integer price;
+    private String description;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "barber_id")
     public Barber barber;

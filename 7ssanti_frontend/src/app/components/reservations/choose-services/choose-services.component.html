@@ -1,41 +1,45 @@
 <div class="flex space-x-4 m-4">
     <div class="w-2/3 display bg-gray-50 rounded-lg p-4 shadow ">
-        <div class="max-w-xs overflow-hidden bg-white rounded-lg shadow-lg ">
+        <div *ngFor="let service of barber.services" class="max-w-xs overflow-hidden bg-white rounded-lg shadow-lg ">
             <div class="px-4 py-2">
-                <h3 class="text-md font-bold text-gray-800 uppercase">Service name</h3>
-                <p class="mt-1 text-xs text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi quos
-                    quidem sequi illum facere recusandae voluptatibus</p>
+                <h3 class="text-md font-bold text-gray-800 uppercase">{{service.name}}</h3>
+                <p class="mt-1 text-xs text-gray-600">{{service.description}}</p>
             </div>
             <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
-                <h3 class="text-sm font-bold text-white">$129</h3>
-                <h3 class="text-sm font-bold text-white">30min</h3>
-                <button
+                <h3 class="text-sm font-bold text-white">${{service.price}}</h3>
+                <h3 class="text-sm font-bold text-white">{{service.timeIstimation}}min</h3>
+                <button (click)="shooseService(service.id , service)"
                     class="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">CHOOSE</button>
             </div>
         </div>
 
     </div>
     <div class="w-1/3 bg-gray-50 rounded-lg p-4 shadow ">
-        <h4 class="p-2 flex space-x-4 border-b border-b-gray-700">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="24"
-                height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                <path d="M17 17h-11v-14h-2" />
-                <path d="M6 5l14 1l-1 7h-13" />
-            </svg>
-            <p class="font-bold text-lg">
-                Cart
-            </p>
+        <h4 class="p-2 flex justify-between border-b border-b-gray-700">
+            <div class="flex space-x-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="24"
+                    height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                    <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                    <path d="M17 17h-11v-14h-2" />
+                    <path d="M6 5l14 1l-1 7h-13" />
+                </svg>
+                <p class="font-bold text-lg">
+                    Cart
+                </p>
+            </div>
+            <button (click)="valide()">
+                valide
+            </button>
         </h4>
         <div>
-            <div class="flex justify-between p-2">
-                <p class="uppercase font-medium">- Service name</p>
-                <p class="text-sm">30min</p>
-                <p class="text-sm">50$</p>
-                <button>
+            <div *ngFor="let service of services" class="flex justify-between p-2">
+                <p class="uppercase font-medium">- {{service.name}}</p>
+                <p class="text-sm">{{service.timeIstimation}}min</p>
+                <p class="text-sm">{{service.price}}$</p>
+                <button (click)="removeService(service.id)">
                     <svg xmlns="http://www.w3.org/2000/svg" class="text-red-700" width="24"
                         height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                         stroke-linecap="round" stroke-linejoin="round">

@@ -35,6 +35,11 @@
 
                                     <th scope="col"
                                         class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                        Client
+                                    </th>
+
+                                    <th scope="col"
+                                        class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                         Price
                                     </th>
 
@@ -43,40 +48,55 @@
                                         Status
                                     </th>
 
-                                    <!-- <th scope="col" class="relative py-3.5 px-4">
+                                    <th scope="col" class="relative py-3.5 px-4">
                                         <span class="sr-only">Actions</span>
-                                    </th> -->
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                                <tr>
+                                <tr *ngFor="let reservation of reservations">
                                     <td
                                         class="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap">
-                                            <span>#3066</span>
+                                        <span>#{{reservation.id}}</span>
                                     </td>
-                                    <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Jan
-                                        6, 2022</td>
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                                        10:00</td>
+                                        {{reservation.date}}</td>
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                                        12:00</td>
+                                        {{reservation.startTime}}
+                                    </td>
+                                    <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                        {{reservation.endTime}}
+                                    </td>
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                         <div class="flex items-center gap-x-2">
                                             <img class="object-cover w-8 h-8 rounded-full"
                                                 src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
                                                 alt="">
                                             <div>
-                                                <h2 class="text-sm font-medium text-gray-800 dark:text-white ">Arthur
-                                                    Melo</h2>
+                                                <h2 class="text-sm font-medium text-gray-800 dark:text-white ">
+                                                    {{reservation.services[0].barber.fullName}}</h2>
                                                 <p class="text-xs font-normal text-gray-600 dark:text-gray-400">
-                                                    authurmelo@example.com</p>
+                                                    {{reservation.services[0].barber.email}}
+                                                </p>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                                        50DH</td>
+                                        <div class="flex items-center gap-x-2">
+                                            <div>
+                                                <h2 class="text-sm font-medium text-gray-800 dark:text-white ">
+                                                    {{reservation.client.fullName}}</h2>
+                                                <p class="text-xs font-normal text-gray-600 dark:text-gray-400">
+                                                    {{reservation.client.email}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                        {{reservation.price}}DH
+                                    </td>
                                     <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                        <div
+                                        <div *ngIf="reservation.etat == 'PASSED'"
                                             class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
                                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -84,20 +104,57 @@
                                                     stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
 
-                                            <h2 class="text-sm font-normal">Paid</h2>
+                                            <h2 class="text-sm font-normal">Passed</h2>
+                                        </div>
+
+                                        <div *ngIf="reservation.etat == 'NOT_PASSED'"
+                                            class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-red-500 bg-red-100/60">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-x" width="24" height="24"
+                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M18 6l-12 12" />
+                                                <path d="M6 6l12 12" />
+                                            </svg>
+
+                                            <h2 class="text-sm font-normal">Not Passed</h2>
+                                        </div>
+
+                                        <div *ngIf="reservation.etat == 'PENDING'"
+                                            class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-gray-500 bg-gray-100/60">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-clock-hour-5" width="24" height="24"
+                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                                                <path d="M12 12l2 3" />
+                                                <path d="M12 7v5" />
+                                            </svg>
+
+                                            <h2 class="text-sm font-normal">Pending</h2>
                                         </div>
                                     </td>
-                                    <!-- <td class="px-4 py-4 text-sm whitespace-nowrap">
+                                    <td class="px-4 py-4 text-sm whitespace-nowrap">
                                         <div class="flex items-center gap-x-6">
-                                            <button class="text-gray-500 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
-                                                Archive
+                                            <button (click)="passedReservation(reservation.id)"
+                                                class="text-gray-500 transition-colors duration-200 border rounded-md p-1 hover:text-gray-100 hover:bg-green-500 focus:outline-none">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    class="icon icon-tabler icon-tabler-check" width="24" height="24"
+                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M5 12l5 5l10 -10" />
+                                                </svg>
                                             </button>
-    
-                                            <button class="text-blue-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none">
-                                                Download
+
+                                            <button (click)="notPassedReservation(reservation.id)"
+                                                class="text-gray-500 transition-colors duration-200 border rounded-md p-1 hover:text-gray-100 hover:bg-red-500 focus:outline-none">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
                                             </button>
                                         </div>
-                                    </td> -->
+                                    </td>
                                 </tr>
 
 

@@ -1,10 +1,60 @@
-<div class="flex items-center justify-center h-full">
+<div class="justify-center h-full w-full">
     <div class="bg-gray-50 m-4 rounded-lg p-4 shadow ">
         <p class="text-light text-md m-2">Choose your reservation time :</p>
-        <div class="">
-            <input type="time"
+
+        <div>
+            <div class="p-2">
+                <button (click)="showMorningTime = !showMorningTime"
+                    class="p-2 border font-medium  flex justify-between w-full">
+                    <p>Morning</p>
+                    <svg *ngIf="!showMorningTime" xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-caret-down" width="24" height="24" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M6 10l6 6l6 -6h-12" />
+                    </svg>
+                    <svg *ngIf="showMorningTime" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-up" width="24"
+                        height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M18 14l-6 -6l-6 6h12" />
+                    </svg>
+                </button>
+                <div *ngIf="showMorningTime" class="display p-2">
+                    <button (click)="shooseTime(mTime)"  *ngFor="let mTime of morningTime"
+                        class="p-2 bg-gray-800 text-white rounded-full font-medium w-fit">
+                        {{mTime}}</button>
+                </div>
+            </div>
+            <div class="p-2">
+                <button (click)="showAfternoonTime =! showAfternoonTime"
+                    class="p-2 border font-medium  flex justify-between w-full">
+                    <p>Afternoon</p>
+                    <svg *ngIf="!showAfternoonTime" xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-caret-down" width="24" height="24" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M6 10l6 6l6 -6h-12" />
+                    </svg>
+                    <svg *ngIf="showAfternoonTime" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-up" width="24"
+                        height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M18 14l-6 -6l-6 6h12" />
+                    </svg>
+                </button>
+                <div *ngIf="showAfternoonTime" class="display p-2">
+                    <button (click)="shooseTime(aTime)" *ngFor="let aTime of afternoonTime"
+                        class="p-2 bg-gray-800 text-white rounded-full font-medium w-fit">
+                        {{aTime}}</button>
+                </div>
+            </div>
+
+            <!-- <input type="time" (change)="shooseTime()" [(ngModel)]="startTime"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                placeholder="Select time">
+                placeholder="Select time"> -->
         </div>
     </div>
 </div>

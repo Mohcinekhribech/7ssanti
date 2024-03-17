@@ -3,8 +3,8 @@ import { Time } from "@angular/common";
 export interface ReservationReq{
     id:number
     date:Date | ''
-    startTime:Time | ''
-    endTime:Time | ''
+    startTime:String | ''
+    endTime:String | ''
     etat:String
     clientId:number
 }

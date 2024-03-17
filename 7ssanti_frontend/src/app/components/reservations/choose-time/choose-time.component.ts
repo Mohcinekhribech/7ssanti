@@ -1,4 +1,7 @@
+import { Time } from '@angular/common';
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { addStartTimeInReservation } from 'src/app/store/actions/reservation.action';
 
 @Component({
   selector: 'app-choose-time',
@@ -6,27 +9,40 @@ import { Component } from '@angular/core';
   styleUrls: ['./choose-time.component.css'],
 })
 export class ChooseTimeComponent {
-  morningTime = ['9:00','9:05','9:10','9:15','9:20','9:25','9:30','9:35','9:40','9:45','9:50','9:55','10:00','10:00','10:05','10:10','10:15','10:20','10:25',
-    '10:30',
-    '10:35',
-    '10:40',
-    '10:45',
-    '10:50',
-    '10:55',
-    '11:00',
-    '11:00',
-    '11:00',
-    '11:05',
-    '11:10',
-    '11:15',
-    '11:20',
-    '11:25',
-    '11:30',
-    '11:35',
-    '11:40',
-    '11:45',
-    '11:50',
-    '11:55',
-    '12:00',
-  ];
+  constructor(private store:Store){}
+  startTime:Time | undefined ;
+  morningTime:String[] = this.generateTimeSlots("9:00","12:00",5)
+  afternoonTime:String[] = this.generateTimeSlots("14:00","20:00",5)
+  showMorningTime:boolean = false
+  showAfternoonTime:boolean = false
+  ngOnInit(){
+
+  }
+  
+
+  generateTimeSlots(startTime: string, endTime: string, intervalMinutes: number): string[] {
+    const result: string[] = [];
+    const [startHour, startMinute] = startTime.split(":").map(Number);
+    const [endHour, endMinute] = endTime.split(":").map(Number);
+    
+    let currentTime = new Date();
+    currentTime.setHours(startHour, startMinute, 0, 0);
+
+    const endTimeDate = new Date();
+    endTimeDate.setHours(endHour, endMinute, 0, 0);
+
+    while (currentTime <= endTimeDate) {
+        const hour = currentTime.getHours().toString().padStart(2, "0");
+        const minute = currentTime.getMinutes().toString().padStart(2, "0");
+        result.push(`${hour}:${minute}`);
+        currentTime = new Date(currentTime.getTime() + intervalMinutes * 60000); // Increment by intervalMinutes
+    }
+
+    return result;
+}
+
+  shooseTime(startTime:String)
+  {
+      this.store.dispatch(addStartTimeInReservation({startTime:startTime}));
+  }
 }

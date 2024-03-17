@@ -28,6 +28,13 @@ export class ReservationService {
     return this.http.post(`${this.apiUrl}/reservation`, data);
   }
 
+  passedReservation(id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/reservation/passed-reservation/`+id, {});
+  }
+  notPassedReservation(id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/reservation/not-passed-reservation/`+id, {});
+  }
+
   putData(data: ReservationReq,id:number): Observable<any> {
     return this.http.put(`${this.apiUrl}/reservation/`+id, data);
   }

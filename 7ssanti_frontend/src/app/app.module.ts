@@ -31,6 +31,7 @@ import { BarberServicesComponent } from './components/barbers/barber-services/ba
 import { AllBarbersComponent } from './components/barbers/all-barbers/all-barbers.component';
 import { AllHairSalonComponent } from './components/hair-salon/all-hair-salon/all-hair-salon.component';
 import { AllMyReservationsComponent } from './components/reservations/all-my-reservations/all-my-reservations.component';
+import { reservationReducer } from './store/reducers/reservation.reducer';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import { AllMyReservationsComponent } from './components/reservations/all-my-res
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    StoreModule.forRoot({ myFeature: articleReducer}),
+    StoreModule.forRoot({ myFeature: articleReducer , reservationFeature: reservationReducer}),
     EffectsModule.forRoot(ArticleEffects),
   ],
   providers: [],

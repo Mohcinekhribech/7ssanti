@@ -15,7 +15,8 @@ export class BarberProfileComponent {
     dateOfBirth: "",
     email: "",
     role: "",
-    articles: []
+    articles: [],
+    services: []
   }
   constructor(private barberService:BarberService){}
   ngOnInit()
@@ -24,7 +25,7 @@ export class BarberProfileComponent {
   }
   getBarber()
   {
-    this.barberService.getOneBarber(1).subscribe((res)=>{
+    this.barberService.getOneBarber(5).subscribe((res)=>{
       this.barber = res 
       console.log(this.barber)
     })

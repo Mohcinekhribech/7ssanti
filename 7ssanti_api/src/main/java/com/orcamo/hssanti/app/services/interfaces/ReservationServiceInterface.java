@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface ReservationServiceInterface extends CrudInterface<ReservationReq, ReservationResp,Integer> {
     List<ReservationResp> getAllByClient(Integer client_id);
+    boolean passedReservation(Integer id);
+    boolean notPassedReservation(Integer id);
 }

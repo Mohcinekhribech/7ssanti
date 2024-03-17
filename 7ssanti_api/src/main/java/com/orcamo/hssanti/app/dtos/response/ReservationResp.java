@@ -1,6 +1,7 @@
 package com.orcamo.hssanti.app.dtos.response;
 
 import com.orcamo.hssanti.app.dtos.request.ClientReq;
+import com.orcamo.hssanti.app.dtos.request.ServiceForReservationReq;
 import com.orcamo.hssanti.app.dtos.request.ServiceReq;
 import com.orcamo.hssanti.app.entities.ReservationEtat;
 import lombok.Data;
@@ -16,7 +17,8 @@ public class ReservationResp {
     private LocalDate date;
     private LocalTime startTime;
     private LocalTime endTime;
+    private Integer price ;
     private ReservationEtat etat;
-    private List<ServiceReq> services ;
+    private List<ServiceForReservationReq> services ;
     private ClientReq client;
 }

@@ -4,6 +4,7 @@ import com.orcamo.hssanti.app.dtos.request.ReservationReq;
 import com.orcamo.hssanti.app.dtos.response.ReservationResp;
 import com.orcamo.hssanti.app.entities.Client;
 import com.orcamo.hssanti.app.entities.Reservation;
+import com.orcamo.hssanti.app.entities.ReservationEtat;
 import com.orcamo.hssanti.app.repositories.ClientRepository;
 import com.orcamo.hssanti.app.repositories.ReservationRepository;
 import com.orcamo.hssanti.app.services.interfaces.ReservationServiceInterface;
@@ -71,5 +72,25 @@ public class ReservationService implements ReservationServiceInterface {
     public List<ReservationResp> getAllByClient(Integer client_id) {
         Optional<Client> client = clientRepository.findById(client_id);
         return this.reservationRepository.getAllByClient(client.orElse(null)).stream().map(reservation -> modelMapper.map(reservation,ReservationResp.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean passedReservation(Integer id) {
+        Optional<Reservation> reservationOptional = reservationRepository.findById(id);
+        return reservationOptional.map(reservation -> {
+            reservation.setEtat(ReservationEtat.PASSED);
+            reservationRepository.save(reservation);
+            return true;
+        }).orElse(false);
+    }
+
+    @Override
+    public boolean notPassedReservation(Integer id) {
+        Optional<Reservation> reservationOptional = reservationRepository.findById(id);
+        return reservationOptional.map(reservation -> {
+            reservation.setEtat(ReservationEtat.NOT_PASSED);
+            reservationRepository.save(reservation);
+            return true;
+        }).orElse(false);
     }
 }

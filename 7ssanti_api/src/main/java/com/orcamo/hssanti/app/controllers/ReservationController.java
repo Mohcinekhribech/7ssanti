@@ -5,7 +5,6 @@ import com.orcamo.hssanti.app.dtos.response.ReservationResp;
 import com.orcamo.hssanti.app.services.interfaces.ReservationServiceInterface;
 import com.orcamo.hssanti.shareable.CrudController;
 import com.orcamo.hssanti.shareable.ResponseMessage;
-import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +16,20 @@ public class ReservationController extends CrudController<ReservationReq, Reserv
     public ReservationController(ReservationServiceInterface reservationServiceInterface, ResponseMessage responseMessage) {
         super(reservationServiceInterface, responseMessage);
     }
-    @PutMapping("/client/{id}")
+    @GetMapping("/client/{id}")
     public List<ReservationResp> getAllByClient(@PathVariable Integer id)
     {
        return this.service.getAllByClient(id);
+    }
+
+    @PutMapping("/passed-reservation/{id}")
+    public ResponseEntity<Boolean> passedReserevation(@PathVariable Integer id)
+    {
+        return ResponseEntity.ok().body(this.service.passedReservation(id));
+    }
+    @PutMapping("/not-passed-reservation/{id}")
+    public ResponseEntity<Boolean> notPassedReservation(@PathVariable Integer id)
+    {
+        return ResponseEntity.ok().body(this.service.notPassedReservation(id));
     }
 }

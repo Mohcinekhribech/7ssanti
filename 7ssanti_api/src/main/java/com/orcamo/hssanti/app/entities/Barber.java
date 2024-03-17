@@ -19,6 +19,8 @@ public class Barber extends User {
     private  Integer yearsOfExperience;
     @OneToMany(mappedBy = "barber")
     private List<Article> articles;
+    @OneToMany(mappedBy = "barber")
+    private List<Service> services;
     @ManyToOne
     @JoinColumn(name = "hairSalon_id")
     private HairSalon hairSalon;

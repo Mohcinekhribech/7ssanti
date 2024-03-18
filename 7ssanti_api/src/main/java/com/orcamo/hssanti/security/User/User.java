@@ -1,5 +1,6 @@
 package com.orcamo.hssanti.security.User;
 
+import com.orcamo.hssanti.app.entities.Claim;
 import com.orcamo.hssanti.app.entities.Media;
 import com.orcamo.hssanti.security.token.Token;
 import jakarta.persistence.*;
@@ -22,7 +23,6 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "app_user")
-//public class User {
 public class User  implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +36,8 @@ public class User  implements UserDetails {
     protected Role role;
     @OneToMany(mappedBy = "user")
     protected List<Token> tokens;
+    @OneToMany(mappedBy = "user")
+    protected List<Claim> claims;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(this.role.name()));

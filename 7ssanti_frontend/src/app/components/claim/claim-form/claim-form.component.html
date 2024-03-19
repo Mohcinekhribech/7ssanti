@@ -1,0 +1,10 @@
+<div class="bg-gray-50 p-2 rounded-md">
+    <form (submit)="postClaim()" class="relative ">
+            <textarea id="content" rows="4" name="content" [(ngModel)]="claimReq.content"
+                class="w-full text-gray-900 bg-gray-50 text-lg border-0 focus:border-0 outline-none p-4  "
+                placeholder="your Claim" required></textarea>
+            <app-primary-button class="text-sm absolute right-0 top-[80%]">
+                post
+            </app-primary-button>
+    </form>
+</div>

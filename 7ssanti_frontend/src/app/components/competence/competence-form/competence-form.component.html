@@ -1,0 +1,20 @@
+<section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md">
+    <form (submit)="posteCompetence()">
+        <div class="">
+            <div>
+                <label class="text-gray-700 dark:text-gray-200" for="name">name</label>
+                <input id="name" name="name" [(ngModel)]="competenceReq.name" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            </div>
+
+            <div>
+                <label class="text-gray-700 dark:text-gray-200" for="Description">Description</label>
+                <textarea name="descritption" [(ngModel)]="competenceReq.description" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"></textarea>
+            </div>
+
+        </div>
+
+        <app-primary-button type="submit" class="flex justify-end mt-6">
+            Save
+        </app-primary-button>
+    </form>
+</section>

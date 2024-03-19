@@ -32,6 +32,12 @@ import { AllBarbersComponent } from './components/barbers/all-barbers/all-barber
 import { AllHairSalonComponent } from './components/hair-salon/all-hair-salon/all-hair-salon.component';
 import { AllMyReservationsComponent } from './components/reservations/all-my-reservations/all-my-reservations.component';
 import { reservationReducer } from './store/reducers/reservation.reducer';
+import { RateFormComponent } from './components/rates/rate-form/rate-form.component';
+import { AllRateComponent } from './components/rates/all-rate/all-rate.component';
+import { ClaimFormComponent } from './components/claim/claim-form/claim-form.component';
+import { CompetenceFormComponent } from './components/competence/competence-form/competence-form.component';
+import { ShowCompetenceComponent } from './components/competence/show-competence/show-competence.component';
+import { CompetenceComponent } from './components/competence/competence/competence.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +63,13 @@ import { reservationReducer } from './store/reducers/reservation.reducer';
     BarberServicesComponent,
     AllBarbersComponent,
     AllHairSalonComponent,
-    AllMyReservationsComponent
+    AllMyReservationsComponent,
+    RateFormComponent,
+    AllRateComponent,
+    ClaimFormComponent,
+    CompetenceFormComponent,
+    ShowCompetenceComponent,
+    CompetenceComponent
   ],
   imports: [
     BrowserModule,

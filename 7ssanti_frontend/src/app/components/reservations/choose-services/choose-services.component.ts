@@ -21,7 +21,8 @@ export class ChooseServicesComponent {
     dateOfBirth: "",
     email: "",
     role: "Barber",
-    services: []
+    services: [],
+    rates: []
   }
   services:ServiceReq[]=[];
   shoosedServices:number[]=[]

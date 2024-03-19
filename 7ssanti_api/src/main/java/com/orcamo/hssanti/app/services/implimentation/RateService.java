@@ -27,9 +27,9 @@ public class RateService implements RateServiceInterface {
 
     @Override
     public RateResp create(RateReq rateReq) {
-        if (rateReq.getRate() <= 5 && rateReq.getRate() >= 1) {
+        if (rateReq.getRate() <= 5 && rateReq.getRate() >= 0) {
             Optional<Barber> barberOptional = barberRepository.findById(rateReq.getBarber_id());
-            Optional<Client> clientOptional = clientRepository.findById(rateReq.getBarber_id());
+            Optional<Client> clientOptional = clientRepository.findById(rateReq.getClient_id());
             return barberOptional.flatMap(barber -> clientOptional.map(client -> {
                 Rate rate = modelMapper.map(rateReq, Rate.class);
                 rate.setBarber(barber);

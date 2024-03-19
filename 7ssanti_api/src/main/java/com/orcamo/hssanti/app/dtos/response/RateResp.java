@@ -10,5 +10,4 @@ public class RateResp {
     private Integer rate;
     private String note;
     private ClientReq client;
-    private BarberReq barber;
 }

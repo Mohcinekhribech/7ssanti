@@ -16,8 +16,13 @@ export class BarberProfileComponent {
     email: "",
     role: "",
     articles: [],
-    services: []
+    services: [],
+    rates: []
   }
+  showRateForm:boolean=false
+  showAllRates:boolean=false
+  showClaimForm:boolean=false
+  showCompetence:boolean=false
   constructor(private barberService:BarberService){}
   ngOnInit()
   {
@@ -29,5 +34,17 @@ export class BarberProfileComponent {
       this.barber = res 
       console.log(this.barber)
     })
+  }
+  closeModal(data: any) {
+    this.showRateForm = false;
+  }
+  closeAllRateModal(data: any) {
+    this.showAllRates = false;
+  }
+  closeClaimModal(data: any) {
+    this.showClaimForm = false;
+  }
+  closeCompetenceModal(data: any) {
+    this.showCompetence = false;
   }
 }

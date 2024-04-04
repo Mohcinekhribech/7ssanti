@@ -23,6 +23,10 @@ export class ServiceService {
     return this.http.post(`${this.apiUrl}/service`, data);
   }
 
+  postServicesReserved(reservationId: number,serviceId:number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/reserve/service/${reservationId}/${serviceId}`, {});
+  }
+
   putData(data: ServiceReq,id:number): Observable<any> {
     return this.http.put(`${this.apiUrl}/service/`+id, data);
   }

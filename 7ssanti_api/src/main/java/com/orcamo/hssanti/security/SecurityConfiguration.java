@@ -4,6 +4,7 @@ import com.orcamo.hssanti.security.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -25,7 +26,6 @@ public class SecurityConfiguration {
             };
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
-    //private final LogoutHandler logoutHandler;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -34,18 +34,13 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(req ->
                         req.requestMatchers(WHITE_LIST_URL)
                                 .permitAll()
-//                              .requestMatchers("").hasAnyRole(Role.Student.name(), Role.Teacher.name())
+//                                .requestMatchers(HttpMethod.GET,"").hasAnyAuthority("")
                                 .anyRequest()
                                 .authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-//                .logout(logout ->
-//                        logout.logoutUrl("/api/v1/auth/logout")
-//                                .addLogoutHandler(logoutHandler)
-//                                .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
-//                )
         ;
 
         return http.build();

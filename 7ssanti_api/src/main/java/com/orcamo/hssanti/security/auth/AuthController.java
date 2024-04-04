@@ -1,6 +1,9 @@
 package com.orcamo.hssanti.security.auth;
 
+import com.orcamo.hssanti.app.dtos.request.BarberReq;
+import com.orcamo.hssanti.app.dtos.request.ClientReq;
 import com.orcamo.hssanti.security.User.DTOs.UserRequest;
+import com.orcamo.hssanti.shareable.ResponseMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -18,12 +21,19 @@ import java.io.IOException;
 public class AuthController {
 
     private final AuthenticationService service;
+    private final ResponseMessage responseMessage;
 
-    @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody UserRequest request
+    @PostMapping("/register-client")
+    public ResponseEntity<AuthenticationResponse> clientRegister(
+            @RequestBody ClientReq request
     ) {
-        return ResponseEntity.ok(service.register(request));
+        return ResponseEntity.ok(service.clientBegister(request));
+    }
+    @PostMapping("/register-barber")
+    public ResponseEntity<AuthenticationResponse> barberRegister(
+            @RequestBody BarberReq request
+    ) {
+        return ResponseEntity.ok(service.barberRegister(request));
     }
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
@@ -38,6 +48,14 @@ public class AuthController {
             HttpServletResponse response
     ) throws IOException {
         service.refreshToken(request, response);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<ResponseMessage> logout(HttpServletRequest request, HttpServletResponse response) {
+        // Invalidate JWT token by removing it from client-side storage
+        service.logout(request,response);
+        responseMessage.setMessage("Logout successful");
+        return ResponseEntity.ok(responseMessage);
     }
 
 }

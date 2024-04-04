@@ -1,8 +1,8 @@
 <div>
-    <div class="rounded-md border border-[1px] border-gray-200  bg-gray-50">
+    <div *ngIf="user?.role == 'Barber'" class="rounded-md border border-[1px] border-gray-200  bg-gray-50">
         <div class="flex p-2 space-x-4">
             <img class="h-12 w-12 rounded-full shadow"
-                src="https://media.licdn.com/dms/image/D4E03AQHdmxxBtduvCQ/profile-displayphoto-shrink_400_400/0/1677932158562?e=1712188800&v=beta&t=7ZbkW9eIw1JwrpKgQcbWSHu2Brhm6eSj8vKKIcmQpKk"
+                [src]="user?.profilePic"
                 alt="">
             <button (click)="showForm = true"
                 class="border  border-[1px] p-2 w-full rounded-full border-gray-400  cursor-pointer  ">
@@ -15,9 +15,9 @@
         <div class="bg-gray-50 p-2 rounded-md">
             <div class="flex space-x-4 items-center p-4">
                 <img class="h-12 w-12 rounded-full shadow"
-                    src="https://media.licdn.com/dms/image/D4E03AQHdmxxBtduvCQ/profile-displayphoto-shrink_400_400/0/1677932158562?e=1712188800&v=beta&t=7ZbkW9eIw1JwrpKgQcbWSHu2Brhm6eSj8vKKIcmQpKk"
+                    [src]="user?.profilePic"
                     alt="">
-                <p class="font-medium text-md  ">Mohcine khribech</p>
+                <p class="font-medium text-md  ">{{user?.fullName}}</p>
             </div>
             <form (submit)="postArticle()" class="relative ">
                 <textarea id="comment" rows="4" name="content" [(ngModel)]="article.description"
@@ -82,9 +82,9 @@
                         </div>
                     </label>
                 </div>
-                <input id="imageInput" class="hidden" type="file" accept="image/png" #fileInput
+                <input id="imageInput" class="hidden" type="file" accept="image/*" #fileInput
                     (change)="addImage(fileInput)" multiple>
-                <input id="videoInput" class="hidden" type="file" accept="video/mp4" #videoInput
+                <input id="videoInput" class="hidden" type="file" accept="video/*" #videoInput
                     (change)="addVideo(videoInput)" multiple>
                 <div class="text-sm text-gray-500 ml-4" id="num-of-files">
                     {{ numOfFiles }} Files Selected

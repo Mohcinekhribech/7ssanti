@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CompetenceReq } from 'src/app/core/models/request/CompetenceReq.model';
 
 @Component({
   selector: 'app-show-competence',
@@ -6,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./show-competence.component.css']
 })
 export class ShowCompetenceComponent {
-  // @Input() competen
+  @Input() competences : CompetenceReq [] =[] 
 }

@@ -19,6 +19,7 @@ public class UserRequest {
     @NotNull(message = "Date of birth cannot be null")
     @Past(message = "Date of birth must be in the past")
     private LocalDate dateOfBirth;
+    private String profilePic;
 
     @NotBlank(message = "email cannot be blank")
     @Size(max = 1000, message = "Email must not exceed 1000 characters")

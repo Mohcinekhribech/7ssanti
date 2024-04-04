@@ -8,6 +8,10 @@ export const addDateInReservation = createAction('[Reservation Component] add da
 props<{ date: Date }>());
 export const addStartTimeInReservation = createAction('[Reservation Component] add start time reservation',
 props<{ startTime: String }>());
+export const addEndTimeInReservation = createAction('[Reservation Component] end start time reservation',
+props<{ endTime: String }>());
+export const addClientIdInReservation = createAction('[Reservation Component] client id reservation',
+props<{ id: number }>());
 export const addServicesReservation = createAction('[Reservation Component] add services reservation',
 props<{ services: number[] }>());
 export const removeService = createAction(

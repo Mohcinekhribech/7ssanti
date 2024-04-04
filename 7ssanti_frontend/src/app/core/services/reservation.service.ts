@@ -20,6 +20,10 @@ export class ReservationService {
     return this.http.get(`${this.apiUrl}/reservation/client/`+id);
   }
 
+  getReservationsByBarber(id:number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/reservation/barber/`+id);
+  }
+
   getOneReservation(id:number): Observable<any> {
     return this.http.get(`${this.apiUrl}/reservation/`+id);
   }

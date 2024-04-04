@@ -1,19 +1,26 @@
 <div class="w-full p-2 bg-gray-50 border-[1px] border-gray-200 my-2 rounded-md   ">
     <div class="flex space-x-4">
         <img class="h-12 w-12 rounded-full shadow"
-            src="https://media.licdn.com/dms/image/D4E03AQHdmxxBtduvCQ/profile-displayphoto-shrink_400_400/0/1677932158562?e=1712188800&v=beta&t=7ZbkW9eIw1JwrpKgQcbWSHu2Brhm6eSj8vKKIcmQpKk"
+            [src]="article.barber?.profilePic"
             alt="">
         <div>
-            <p class="font-medium   "> {{article.barber?.fullName}} </p>
+            <a routerLink="/barber/{{article.barber?.id}}" class="font-medium   "> {{article.barber?.fullName}} </a>
             <p class=" font-light text-xs  ">03/02/2024 23:51</p>
         </div>
     </div>
-    <div class="p-2">
+    <div class="relative">
+        <div class="w-full h-full absolute flex items-center">
+            <div class="flex w-full justify-between">
+                <button (click)="backMedia()" class="bg-gray-800 text-white rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg></button>
+                <button (click)="nextMedia()" class="bg-gray-800 text-white rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg></button>
+            </div>
+        </div>
         <p class="text-sm text-gray-700  py-2">
             {{article.description}}
         </p>
-        <div class="flex justify-center">
-            <img class="rounded-md max-h-[400px] max-w-full" [src]="article.medias[0]?.mediaLink" alt="">
+        <div *ngIf="article.medias[mediaStep].mediaLink" class="flex justify-center p-4">
+            <video loading="lazy" *ngIf="article.medias[mediaStep].type == 'VIDEO'" controls [src]="article.medias[mediaStep].mediaLink"></video>
+            <img loading="lazy" *ngIf="article.medias[mediaStep].type == 'IMAGE'" class="rounded-md max-h-[400px] max-w-full" [src]="article.medias[mediaStep].mediaLink" alt="">
         </div>
     </div>
     <div class="p-2 flex space-x-6">
@@ -28,8 +35,8 @@
         </div>
         <button (click)="showArticle()" class="flex space-x-2"> 
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-message-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 20l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c3.255 2.777 3.695 7.266 1.029 10.501c-2.666 3.235 -7.615 4.215 -11.574 2.293l-4.7 1" /></svg>
-            <p>30 Comments</p> 
+            <p>{{article.comments.length}} Comments</p> 
         </button>
     </div>
 </div>
-<app-article-info [article]="article" (closeEvent)="closeModal($event)" [showform]="showed"></app-article-info>
+<app-article-info [article]="article" [user]="user" (closeEvent)="closeModal($event)" [showform]="showed"></app-article-info>

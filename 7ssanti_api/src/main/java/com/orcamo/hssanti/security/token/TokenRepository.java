@@ -1,7 +1,9 @@
 package com.orcamo.hssanti.security.token;
 
+import com.orcamo.hssanti.security.User.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,4 +18,7 @@ public interface TokenRepository extends JpaRepository<Token, Integer> {
     List<Token> findAllValidTokenByUser(Integer id);
 
     Optional<Token> findByToken(String token);
+
+    @Transactional
+    void deleteAllByUser(User user);
 }

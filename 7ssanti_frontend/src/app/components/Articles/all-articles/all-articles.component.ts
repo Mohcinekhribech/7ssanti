@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { ArticleResp } from 'src/app/core/models/response/ArticleResp.model';
+import { UserResp } from 'src/app/core/models/response/UserResp.model';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { fetchArticle } from 'src/app/store/actions/article.action';
 import { selectArticles } from 'src/app/store/selectors/article.selectors';
 
@@ -10,12 +12,20 @@ import { selectArticles } from 'src/app/store/selectors/article.selectors';
   styleUrls: ['./all-articles.component.css']
 })
 export class AllArticlesComponent {
-  constructor(private store:Store) {
-  }
+  constructor(private store:Store,private authService:AuthService) {}
   articles:ArticleResp[]=[]
+  user:UserResp | null = {
+    id: 0,
+    fullName: '',
+    dateOfBirth: '',
+    email: '',
+    role: '',
+    profilePic: ''
+  }
   ngOnInit()
   {
     this.getData()
+    this.authService.getAuthUser() ? this.user = this.authService.getAuthUser() : null 
   }
   getData() {
     this.store.dispatch(fetchArticle())

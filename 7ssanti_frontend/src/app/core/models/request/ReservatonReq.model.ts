@@ -5,6 +5,7 @@ export interface ReservationReq{
     date:Date | ''
     startTime:String | ''
     endTime:String | ''
-    etat:String
+    etat:'PENDING'|'PASSED'|'NOT_PASSED'
     clientId:number
+    price:number
 }

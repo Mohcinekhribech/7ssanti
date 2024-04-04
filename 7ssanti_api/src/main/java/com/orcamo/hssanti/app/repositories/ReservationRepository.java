@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface ReservationRepository extends JpaRepository<Reservation,Integer> {
     List<Reservation> getAllByClient(Client client);
+    List<Reservation> findByServices_barber_Id(Integer barberId);
 }

@@ -1,6 +1,6 @@
 <app-nav-bar></app-nav-bar>
 <div class="pt-14">
-    <button (click)="showForm =true" class="flex space-x-2 bg-[#8EAE69] text-white p-2 font-medium rounded-lg m-4">
+    <button *ngIf="user?.role =='Barber'" (click)="showForm =true" class="flex space-x-2 bg-[#8EAE69] text-white p-2 font-medium rounded-lg m-4">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="24" height="24"
             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
             stroke-linejoin="round">
@@ -44,9 +44,9 @@
             <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
                 <h3 class="text-sm font-bold text-white">${{service.price}}</h3>
                 <h3 class="text-sm font-bold text-white">{{service.timeIstimation}}min</h3>
-                <button
+                <button *ngIf="user?.role =='Barber' && service.barber?.id == user?.id "
                     class="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">Update</button>
-                <button
+                <button *ngIf="user?.role =='Barber' && service.barber?.id == user?.id "
                     class="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">Delete</button>
             </div>
         </div>

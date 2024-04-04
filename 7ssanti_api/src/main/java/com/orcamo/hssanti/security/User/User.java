@@ -18,9 +18,6 @@ import java.util.List;
 
 
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "app_user")
 public class User  implements UserDetails {
@@ -28,6 +25,7 @@ public class User  implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
     protected String fullName;
+    protected String profilePic;
     protected LocalDate dateOfBirth;
     @Column(unique = true)
     protected String email;

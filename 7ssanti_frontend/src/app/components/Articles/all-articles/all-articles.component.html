@@ -5,9 +5,9 @@
         <app-suggested-hair-salon></app-suggested-hair-salon>
     </div>
     <div class="w-[50%] ">
-        <app-article-form></app-article-form>
+        <app-article-form [user]="user"></app-article-form>
         <div *ngFor="let article of articles">
-            <app-article-content [article]="article"></app-article-content>
+            <app-article-content [article]="article" [user]="user"></app-article-content>
         </div>
     </div>
     <div class="w-[25%] bg-gray-50 h-fit border-[1px] border-gray-200 rounded-lg">

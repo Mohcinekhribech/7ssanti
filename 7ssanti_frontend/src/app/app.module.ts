@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/shareable/nav-bar/nav-bar.component';
@@ -38,6 +38,35 @@ import { ClaimFormComponent } from './components/claim/claim-form/claim-form.com
 import { CompetenceFormComponent } from './components/competence/competence-form/competence-form.component';
 import { ShowCompetenceComponent } from './components/competence/show-competence/show-competence.component';
 import { CompetenceComponent } from './components/competence/competence/competence.component';
+import { RegisterClientComponent } from './components/auth/register/register-client/register-client.component';
+import { RegisterBarberComponent } from './components/auth/register/register-barber/register-barber.component';
+import { AuthInterceptor } from './guards/AuthInterceptor';
+import { DatePipe } from '@angular/common';
+import { authReducer } from './store/reducers/user.reducer';
+import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmReservationComponent } from './components/reservations/confirm-reservation/confirm-reservation.component';
+import { DashrboardComponent } from './components/admin/layout/dashrboard/dashrboard.component';
+import { ClaimsComponent } from './components/admin/claims/claims.component';
+import { UsersComponent } from './components/admin/users/users.component';
+import { BarbersComponent } from './components/admin/barbers/barbers.component';
+import { ClientComponent } from './components/admin/client/client.component';
+
+export function tokenGetter() {
+  const token = getCookie('token');
+  return  token != undefined ? token : null
+}
+
+export function getCookie(name: string): string | undefined {
+  const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+  return cookieValue ? cookieValue.pop(): undefined;
+}
+
+const jwtModuleOptions: JwtModuleOptions = {
+  config: {
+    tokenGetter: tokenGetter,
+  },
+};
 
 @NgModule({
   declarations: [
@@ -69,17 +98,31 @@ import { CompetenceComponent } from './components/competence/competence/competen
     ClaimFormComponent,
     CompetenceFormComponent,
     ShowCompetenceComponent,
-    CompetenceComponent
+    CompetenceComponent,
+    RegisterClientComponent,
+    RegisterBarberComponent,
+    ConfirmReservationComponent,
+    DashrboardComponent,
+    ClaimsComponent,
+    UsersComponent,
+    BarbersComponent,
+    ClientComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ToastModule,
     AppRoutingModule,
-    StoreModule.forRoot({ myFeature: articleReducer , reservationFeature: reservationReducer}),
+    StoreModule.forRoot({ myFeature: articleReducer , reservationFeature: reservationReducer,userFeature: authReducer}),
     EffectsModule.forRoot(ArticleEffects),
+    JwtModule.forRoot(jwtModuleOptions)
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true, 
+  },DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

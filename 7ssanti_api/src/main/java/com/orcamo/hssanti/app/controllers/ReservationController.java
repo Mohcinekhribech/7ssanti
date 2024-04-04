@@ -22,6 +22,12 @@ public class ReservationController extends CrudController<ReservationReq, Reserv
        return this.service.getAllByClient(id);
     }
 
+    @GetMapping("/barber/{id}")
+    public List<ReservationResp> getAllByBarber(@PathVariable Integer id)
+    {
+        return this.service.getAllByBarber(id);
+    }
+
     @PutMapping("/passed-reservation/{id}")
     public ResponseEntity<Boolean> passedReserevation(@PathVariable Integer id)
     {

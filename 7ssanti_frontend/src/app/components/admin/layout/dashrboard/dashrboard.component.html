@@ -1,0 +1,83 @@
+<div class="flex">
+    <div
+        class="sideBar transition-all duration-300 max-sm:ml-[-58px] ease-linear w-[60px] flex flex-col h-screen p-2 top-0 bg-[#16302B] px-2 border-r border-gray-700 relative">
+        <div class="flex flex-col items-center ">
+            <h4 class="side hidden mx-2 my-6 font-medium text-lg text-[#818FB4]">Dashboard</h4>
+            <img src="https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?size=626&ext=jpg&ga=GA1.2.1372696043.1702887777&semt=sph"
+                class="image object-cover w-24 h-24  mx-2 rounded-full h-8 w-8" alt="Avatar" />
+        </div>
+        <div class="flex flex-col justify-between flex-1 mt-2">
+            <div>
+                <a routerLink="/admin/barbers"
+                    class="flex cursor-pointer items-center px-2 py-2 mt-5 transition-colors duration-300 transform rounded-lg text-[#EEF0E5] hover:bg-gray-100 hover:bg-gray-800 hover:text-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-razor-electric">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M8 3v2" />
+                        <path d="M12 3v2" />
+                        <path d="M16 3v2" />
+                        <path d="M9 12v6a3 3 0 0 0 6 0v-6h-6z" />
+                        <path d="M8 5h8l-1 4h-6z" />
+                        <path d="M12 17v1" />
+                    </svg>
+                    <span class="side hidden mx-4">Barbers</span>
+                </a>
+                <a routerLink="/admin/clients"
+                    class="flex cursor-pointer items-center px-2 py-2 mt-5 transition-colors duration-300 transform rounded-lg text-[#EEF0E5] hover:bg-gray-100 hover:bg-gray-800 hover:text-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users-group" width="24"
+                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                        <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
+                        <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                        <path d="M17 10h2a2 2 0 0 1 2 2v1" />
+                        <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                        <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
+                    </svg>
+                    <span class="side hidden mx-4">Clients</span>
+                </a>
+                <a routerLink="/admin/claims"
+                    class="flex cursor-pointer items-center px-2 py-2 mt-5 transition-colors duration-300 transform rounded-lg text-[#EEF0E5] hover:bg-gray-100 hover:bg-gray-800 hover:text-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-alert-triangle">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M12 9v4" />
+                        <path
+                            d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" />
+                        <path d="M12 16h.01" />
+                    </svg>
+                    <span class="side hidden mx-4">claims</span>
+                </a>
+                <button (click)="logout()"
+                    class="flex cursor-pointer items-center px-2 py-2 mt-5 transition-colors duration-300 transform rounded-lg text-[#EEF0E5] hover:bg-gray-100 hover:bg-gray-800 hover:text-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-logout">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                        <path d="M9 12h12l-3 -3" />
+                        <path d="M18 15l3 -3" />
+                    </svg>
+                    <span class="side hidden mx-4">Logout</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <div class="w-full overflow-y-auto mx-2 h-screen overflow-y-scroll">
+        <div (click)="sideBar()" class="p-2 w-fit cursor-pointer bg-[#818FB4] rounded-lg m-4 text-[#616571]">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="24" height="24"
+                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M4 6l16 0"></path>
+                <path d="M4 12l16 0"></path>
+                <path d="M4 18l16 0"></path>
+            </svg>
+        </div>
+        <ng-content></ng-content>
+    </div>
+</div>

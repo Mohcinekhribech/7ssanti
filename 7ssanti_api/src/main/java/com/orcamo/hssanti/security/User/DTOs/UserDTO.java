@@ -15,6 +15,8 @@ public class UserDTO {
     @Size(max = 255, message = "fullName name must not exceed 255 characters")
     private String fullName;
 
+    protected String profilePic;
+
     @NotNull(message = "Date of birth cannot be null")
     @Past(message = "Date of birth must be in the past")
     private LocalDate dateOfBirth;

@@ -1,0 +1,27 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - 7ssanti-db
+    environment:
+      DB_URL : jdbc:postgresql://7ssanti-db:5432/
+    networks:
+      - 7ssanti
+
+  7ssanti-db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=7ssanti
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1832003
+    ports:
+      - "5432:5432"
+    networks:
+     - 7ssanti
+
+networks:
+  7ssanti :
+    driver: bridge

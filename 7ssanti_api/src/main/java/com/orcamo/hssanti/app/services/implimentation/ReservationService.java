@@ -75,6 +75,11 @@ public class ReservationService implements ReservationServiceInterface {
     }
 
     @Override
+    public List<ReservationResp> getAllByBarber(Integer barberId) {
+        return this.reservationRepository.findByServices_barber_Id(barberId).stream().map(reservation -> modelMapper.map(reservation,ReservationResp.class)).collect(Collectors.toList());
+    }
+
+    @Override
     public boolean passedReservation(Integer id) {
         Optional<Reservation> reservationOptional = reservationRepository.findById(id);
         return reservationOptional.map(reservation -> {

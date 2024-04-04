@@ -52,6 +52,9 @@ public class BarberService implements BarberServiceInterface {
     @Override
     public BarberResp getOne(Integer id) {
         Optional<Barber> barberOptional = barberRepository.findById(id);
-        return modelMapper.map(barberOptional.orElse(null),BarberResp.class);
+        return barberOptional.map(barber -> {
+            return modelMapper.map(barber,BarberResp.class);
+        }).orElse(null);
+//        return modelMapper.map(barberOptional.orElse(null),BarberResp.class);
     }
 }

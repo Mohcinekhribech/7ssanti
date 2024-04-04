@@ -2,7 +2,7 @@
     <div *ngFor="let rate of rates" class="border-b mb-2" >
         <div class="flex space-x-4 items-center">
             <img class="h-8 w-8 rounded-full shadow"
-                src="https://media.licdn.com/dms/image/D4E03AQHdmxxBtduvCQ/profile-displayphoto-shrink_400_400/0/1677932158562?e=1712188800&v=beta&t=7ZbkW9eIw1JwrpKgQcbWSHu2Brhm6eSj8vKKIcmQpKk"
+                [src]="rate.client.profilePic"
                 alt="">
             <p class="font-medium text-sm">{{rate.client.fullName}}</p>
             <div class="flex items-center">

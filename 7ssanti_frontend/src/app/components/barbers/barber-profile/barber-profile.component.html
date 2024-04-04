@@ -2,36 +2,34 @@
 <div class="p-2 pt-20">
     <div class="flex space-x-12 w-[90%] p-8 bg-gray-50 mx-auto justify-center rounded-lg">
         <img class="w-60 h-60 rounded-full"
-            src="https://images.pexels.com/photos/19966316/pexels-photo-19966316/free-photo-of-mer-plage-vacances-gens.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+            [src]="barber.profilePic"
             alt="">
         <div class="w-fit">
             <div class="flex space-x-8 ">
                 <p class="font-medium text-2xl py-4 ">{{barber.fullName}}</p>
-
-
                 <div class="flex space-x-4">
                     <button (click)="showRateForm = true" class="flex items-center">
-                        <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        <svg [ngClass]="{'text-yellow-300':ratesSum / barber.rates.length >=1 , 'text-gray-300':ratesSum / barber.rates.length <=1}" class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor" viewBox="0 0 22 20">
                             <path
                                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
                         </svg>
-                        <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        <svg [ngClass]="{'text-yellow-300':ratesSum / barber.rates.length >=2 , 'text-gray-300':ratesSum / barber.rates.length <=2}" class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor" viewBox="0 0 22 20">
                             <path
                                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
                         </svg>
-                        <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        <svg [ngClass]="{'text-yellow-300':ratesSum / barber.rates.length >=3 , 'text-gray-300':ratesSum / barber.rates.length <=3}" class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor" viewBox="0 0 22 20">
                             <path
                                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
                         </svg>
-                        <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        <svg [ngClass]="{'text-yellow-300':ratesSum / barber.rates.length >=4 , 'text-gray-300':ratesSum / barber.rates.length <=4}" class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor" viewBox="0 0 22 20">
                             <path
                                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
                         </svg>
-                        <svg class="w-4 h-4 ms-1 text-gray-300 dark:text-gray-500" aria-hidden="true"
+                        <svg [ngClass]="{'text-yellow-300':ratesSum / barber.rates.length >=5 , 'text-gray-300':ratesSum / barber.rates.length <=5}" class="w-4 h-4 ms-1" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
                             <path
                                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
@@ -41,12 +39,12 @@
                     <button (click)="showAllRates = true" class="text-sm px-2">({{barber.rates.length}})</button>
                 </div>
                 <div>
-                    <button
+                    <button *ngIf="user?.role == 'Barber'"
                         class="bg-gray-100 text-sm my-4 transform duration-300 font-medium p-2 rounded-lg hover:bg-[#8EAE69] hover:text-white">
                         Update Profile </button>
                 </div>
-                <div>
-                    <button 
+                <div *ngIf="user?.role == 'Client'">
+                    <a routerLink="/barber/{{barberId}}/reservation"
                         class="flex space-x-2 bg-gray-100 text-sm my-4 transform duration-300 font-medium p-2 rounded-lg hover:bg-[#8EAE69] hover:text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-clock"
                             width="24" height="24" viewBox="0 0 24 24" stroke-width="1.4" stroke="currentColor"
@@ -60,7 +58,7 @@
                             <path d="M18 16.5v1.5l.5 .5" />
                         </svg>
                         <p>book your place</p>
-                    </button>
+                    </a>
                 </div>
                 <div class="hover:text-red-700 flex items-center text-gray-500">
                     <button (click)="showClaimForm = true ">
@@ -77,7 +75,7 @@
             </div>
             <div class="flex space-x-8 ">
                 <p class=" text-lg  py-4 "><span class="font-medium">{{barber.articles.length}}</span> Articles</p>
-                <p class=" text-lg  py-4 "><span class="font-medium">10</span> Services</p>
+                <a routerLink="/barber/{{barberId}}/services" class=" text-lg  py-4 "><span class="font-medium">{{barber.services.length}}</span> Services</a>
                 <button (click)="showCompetence = true" class=" text-lg  py-4 "><span class="font-medium">10</span> Competitions</button>
             </div>
             <div class="flex space-x-8 ">
@@ -100,22 +98,20 @@
     </div>
 </div>
 <app-modal (closeEvent)="closeModal($event)" *ngIf="showRateForm">
-    <app-rate-form>
+    <app-rate-form [user]="user" [barberId]="barberId">
     </app-rate-form>
 </app-modal>
 
 <app-modal (closeEvent)="closeAllRateModal($event)" *ngIf="showAllRates">
-    <app-all-rate></app-all-rate>
+    <app-all-rate ></app-all-rate>
 </app-modal>
 
 <app-modal (closeEvent)="closeClaimModal($event)" *ngIf="showClaimForm">
-    <app-claim-form></app-claim-form>
+    <app-claim-form [user]="user" ></app-claim-form>
 </app-modal>
 
 <app-modal (closeEvent)="closeCompetenceModal($event)" *ngIf="showCompetence">
     <div>
-        <!-- <app-competence-form></app-competence-form> -->
-        <!-- <app-show-competence></app-show-competence> -->
-        <app-competence></app-competence>
+        <app-competence [competences]="barber.competences"></app-competence>
     </div>
 </app-modal>

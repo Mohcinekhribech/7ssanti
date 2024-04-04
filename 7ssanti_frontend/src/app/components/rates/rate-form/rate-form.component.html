@@ -1,5 +1,5 @@
 <div class="bg-gray-50 p-2 rounded-md">
-    <form (submit)="postRate()" class="relative ">
+    <form class="relative ">
         <div class="w-full">
             <div class="flex items-center justify-center">
                 <button (click)="rateReq.rate=1 ">
@@ -47,9 +47,11 @@
         <textarea id="content" rows="4" name="content" [(ngModel)]="rateReq.note"
             class="w-full text-gray-900 bg-gray-50 text-lg border-0 focus:border-0 outline-none p-4  "
             placeholder="your review" required></textarea>
-        <app-primary-button class="text-sm absolute right-0 top-[80%]">
-            post
-        </app-primary-button>
+            <button (click)="postRate()" type="submit">
+                <app-primary-button class="text-sm absolute right-0 top-[80%]">
+                    post
+                </app-primary-button>
+            </button>
     </form>
 
 </div>
